@@ -17,6 +17,10 @@
 
 //-----------------------------------------------------
 
+*{
+  font-family: 'Consolas';
+}
+
 ion-menu{
   .header::after{background-image:none;} /*Hide toolbar shadow*/
    ion-toolbar{

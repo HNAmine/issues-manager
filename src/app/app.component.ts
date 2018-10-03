@@ -1,3 +1,4 @@
+import { AddQuestions } from './../pages/add-questions/add-questions';
 // import { Component } from '@angular/core';
 // import { Platform } from 'ionic-angular';
 // import { StatusBar } from '@ionic-native/status-bar';
@@ -7,7 +8,7 @@
 
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
-import { UserLogin } from '../pages/user-login/user-login';
+// import { UserLogin } from '../pages/user-login/user-login';
 import { Dashboard } from '../pages/dashboard/dashboard';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +21,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = UserLogin;
+  rootPage = Dashboard;
   pages: Array<{title: string,icon:string, component: any}>;
 
   constructor(
@@ -34,7 +35,8 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Dashbaord',icon:'home', component: Dashboard },
-      { title: 'Logout',icon:'lock', component: UserLogin }
+      { title: 'ajouter des questions',icon:'add', component: AddQuestions }
+      // { title: 'Logout',icon:'lock', component: UserLogin }
     ];
   }
 
@@ -54,14 +56,4 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  /*rootPage:any = TabsPage;
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }*/
 }

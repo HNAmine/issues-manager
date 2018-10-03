@@ -1,0 +1,56 @@
+<!-- <ion-header >
+  <ion-navbar  hideBackButton="true">
+    <ion-buttons end>
+     <button ion-button icon-right color="light" (click)="dashboardPage()">SKIP<ion-icon name="ios-arrow-forward"></ion-icon></button>
+   </ion-buttons>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title text-center>
+      <ion-icon name="add"></ion-icon> questions
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list no-lines padding-top>
+
+    <ion-item>
+      <ion-label stacked>Firstname</ion-label>
+      <ion-input type="text" placeholder="Firstname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Lastname</ion-label>
+      <ion-input type="text" placeholder="Last Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Question</ion-label>
+      <ion-textarea placeholder="Contenu du question"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" placeholder="Confirm Password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Question catégorie</ion-label>
+      <ion-select [(ngModel)]="os" submitText="Okay" cancelText="Nah">
+        <ion-option value="dos">DOS</ion-option>
+        <ion-option value="lunix">Linux</ion-option>
+        <ion-option value="mac7">Mac OS 7</ion-option>
+        <ion-option value="mac8">Mac OS 8</ion-option>
+        <ion-option value="win3.1">Windows 3.1</ion-option>
+        <ion-option value="win95">Windows 95</ion-option>
+        <ion-option value="win98">Windows 98</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button block round color="secondary" (click)="addQuestion()">Ajouter</button>
+
+</ion-content>

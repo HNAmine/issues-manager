@@ -1,8 +1,11 @@
-import { UserLogin } from './../user-login/user-login';
-import { Dashboard } from './../dashboard/dashboard';
-import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { UserForgotpassword } from '../user-forgotpassword/user-forgotpassword';
+import { QuestionService } from "./../../providers/question.service";
+import { Component } from "@angular/core";
+import {
+  NavController,
+  NavParams,
+  AlertController,
+  ToastController
+} from "ionic-angular";
 
 /**
  * Generated class for the Dashboard page.
@@ -11,38 +14,46 @@ import { UserForgotpassword } from '../user-forgotpassword/user-forgotpassword';
  * on Ionic pages and navigation.
  */
 @Component({
-  selector: 'page-add-questions',
-  templateUrl: 'add-questions.html',
+  selector: "page-add-questions",
+  templateUrl: "add-questions.html"
 })
 export class AddQuestions {
-
   os: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+  topics: any[] = [];
 
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
+    private questionService: QuestionService
+  ) {
+    this.topics =this.questionService.getTopics();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddQuestions');
+    console.log("ionViewDidLoad AddQuestions");
   }
 
-  addQuestion(){
+  addQuestion() {
     const confirm = this.alertCtrl.create({
-      title: 'êtes vous sûr ?',
-      message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
+      title: "êtes vous sûr ?",
+      message:
+        "Do you agree to use this lightsaber to do good across the intergalactic galaxy?",
       buttons: [
         {
-          text: 'Disagree',
+          text: "Disagree",
           handler: () => {
             this.confirmQuestionCreation();
           }
         },
         {
-          text: 'Agree',
+          text: "Agree",
           handler: () => {
             this.confirmQuestionCreation();
           },
-          cssClass :"agree"
+          cssClass: "agree"
         }
       ]
     });
@@ -51,10 +62,9 @@ export class AddQuestions {
 
   confirmQuestionCreation() {
     const toast = this.toastCtrl.create({
-      message: 'User was added successfully',
+      message: "User was added successfully",
       duration: 3000
     });
     toast.present();
   }
-
 }

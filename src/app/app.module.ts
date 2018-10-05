@@ -1,3 +1,5 @@
+import { ListQuestions } from './../pages/list-questions/list-questions';
+import { QuestionService } from './../providers/question.service';
 import { AddQuestions } from './../pages/add-questions/add-questions';
 import { Dashboard } from "./../pages/dashboard/dashboard";
 import { UserForgotpassword } from "./../pages/user-forgotpassword/user-forgotpassword";
@@ -24,7 +26,8 @@ import { HttpModule } from "@angular/http";
     UserSignup,
     UserForgotpassword,
     Dashboard,
-    AddQuestions
+    AddQuestions,
+    ListQuestions
   ],
   imports: [BrowserModule, HttpModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
@@ -36,12 +39,14 @@ import { HttpModule } from "@angular/http";
     UserSignup,
     UserForgotpassword,
     Dashboard,
-    AddQuestions
+    AddQuestions,
+    ListQuestions
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    QuestionService
   ]
 })
 export class AppModule {}

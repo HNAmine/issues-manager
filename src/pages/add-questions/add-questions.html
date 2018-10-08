@@ -8,7 +8,9 @@
 
 <ion-header>
   <ion-navbar hideBackButton="true">
-    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title text-center>
       <ion-icon name="add"></ion-icon> questions
     </ion-title>
@@ -29,13 +31,15 @@
     </ion-item>
     <ion-item>
       <ion-label stacked>Question</ion-label>
-      <ion-textarea placeholder="Contenu du question"></ion-textarea>
+      <ion-textarea placeholder="Question"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-input type="password" placeholder="Password"></ion-input>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="email" placeholder="Email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="password" placeholder="Confirm Password"></ion-input>
+      <ion-label stacked>Profession</ion-label>
+      <ion-input type="text" placeholder="Profession"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Topic</ion-label>

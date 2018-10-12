@@ -29,14 +29,17 @@
       <ion-label stacked>Lastname</ion-label>
       <ion-input type="text" placeholder="Last Name"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label stacked>Question</ion-label>
-      <ion-textarea placeholder="Question"></ion-textarea>
-    </ion-item>
+
     <ion-item>
       <ion-label stacked>Email</ion-label>
       <ion-input type="email" placeholder="Email"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Workplace</ion-label>
+      <ion-input type="text" placeholder="Workplace"></ion-input>
+    </ion-item>
+
     <ion-item>
       <ion-label stacked>Profession</ion-label>
       <ion-input type="text" placeholder="Profession"></ion-input>
@@ -47,8 +50,12 @@
         <ion-option *ngFor="let topic of topics" [value]="topic.id">{{topic.value}}</ion-option>
       </ion-select>
     </ion-item>
+    <ion-item>
+      <ion-label stacked>Question</ion-label>
+      <ion-textarea placeholder="Question"></ion-textarea>
+    </ion-item>
   </ion-list>
 
-  <button ion-button block round color="secondary" (click)="addQuestion()">Ajouter</button>
+  <button ion-button block round color="secondary" (click)="addQuestion()">Submit</button>
 
 </ion-content>

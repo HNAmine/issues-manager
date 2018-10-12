@@ -1,37 +1,140 @@
 <ion-header>
-  <ion-navbar  hideBackButton="true">
-    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title text-center> Dashboard</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only><ion-icon name="search"></ion-icon></button>
-    </ion-buttons>
 
+  <ion-navbar no-border-bottom hideBackButton="true">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      Dashboard
+    </ion-title>
   </ion-navbar>
+
 </ion-header>
-<ion-content >
+
 <ion-content>
 
-  <ion-slides autoplay="2000" loop="true" speed="900" >
+  <ion-slides autoplay="2000" loop="true" speed="900">
     <ion-slide>
-  	     <img src="./assets/imgs/banners/1.jpg">
+      <img src="./assets/imgs/banners/1.jpg">
     </ion-slide>
     <ion-slide>
-          <img src="./assets/imgs/banners/2.jpg">
+      <img src="./assets/imgs/banners/2.jpg">
     </ion-slide>
     <ion-slide>
-          <img src="./assets/imgs/banners/3.jpg">
+      <img src="./assets/imgs/banners/3.jpg">
     </ion-slide>
   </ion-slides>
 
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="program" class="bold">
+        Program
+      </ion-segment-button>
+      <ion-segment-button value="speakers" class="bold">
+        Speakers
+      </ion-segment-button>
+      <ion-segment-button value="topics" class="bold">
+        Topics
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 
-  <ion-card >
-    <img src="assets/imgs/ads/ads1.jpg">
-  </ion-card>
-  <ion-card >
-    <img src="assets/imgs/ads/ads2.jpg">
-  </ion-card>
-  <ion-card >
-    <img src="assets/imgs/ads/ads3.jpg">
-  </ion-card>
+  <div [ngSwitch]="segment">
 
+    <ng-container *ngSwitchCase="'program'">
+
+      <ion-list>
+
+        <ion-list-header>
+          Scientific Program
+        </ion-list-header>
+
+        <ion-item-sliding #slidingItem>
+
+          <button ion-item>
+            Day 1 | Saturday 24 November 2018
+          </button>
+
+          <ion-item-options side="right">
+            <button ion-button color="primary">
+              <ion-icon name="ios-cloud-upload"></ion-icon>
+              Download
+            </button>
+          </ion-item-options>
+
+        </ion-item-sliding>
+
+
+        <ion-item-sliding>
+
+          <button ion-item>
+            Day 3 | Saturday 24 November 2018
+          </button>
+
+          <ion-item-options side="right">
+            <button ion-button color="primary">
+              <ion-icon name="ios-cloud-upload"></ion-icon>
+              Download
+            </button>
+          </ion-item-options>
+
+        </ion-item-sliding>
+
+        <ion-item-sliding>
+
+          <button ion-item>
+            Day 3 | Saturday 24 November 2018
+          </button>
+
+          <ion-item-options side="right">
+            <button ion-button color="primary">
+              <ion-icon name="ios-cloud-upload"></ion-icon>
+              Download
+            </button>
+          </ion-item-options>
+
+        </ion-item-sliding>
+
+      </ion-list>
+
+      <ion-list>
+        <ion-list-header>
+          Workshop and Wet Lab Program
+        </ion-list-header>
+        <button ion-item>
+          Day 1 | Saturday 24 November 2018
+        </button>
+
+        <button ion-item>
+          Day 2 | Sunday 25 November 2018
+        </button>
+
+        <button ion-item>
+          Day 3 | Monday 26 November 2018
+        </button>
+      </ion-list>
+    </ng-container>
+
+    <!-- speakers sections -->
+    <ion-list *ngSwitchCase="'speakers'">
+      <ion-item *ngFor="let speaker of speakers">
+        <ion-avatar item-start>
+          <img [src]="speaker.avatarUri">
+        </ion-avatar>
+        <h2>{{speaker.completeName}}</h2>
+        <h3>{{speaker.profession}}</h3>
+        <p>{{speaker.description}}</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'topics'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="./assets/imgs/banners/1.jpg">
+        </ion-thumbnail>
+        <h2>Daffy</h2>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

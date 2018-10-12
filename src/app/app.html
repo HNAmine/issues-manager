@@ -4,31 +4,33 @@
     <ion-toolbar>
       <ion-item no-lines>
         <ion-avatar item-left>
-          <!-- <h2>G</h2> -->
-          <img src="https://cdn.iconscout.com/icon/free/png-48/avatar-370-456322.png">
+          <h2>G</h2>
+          <!-- <img src="https://cdn.iconscout.com/icon/free/png-48/avatar-370-456322.png"> -->
         </ion-avatar>
         <h2>Hello,</h2>
         <p>Guest User</p>
       </ion-item>
-      <ion-buttons end>
-        <button ion-button icon-only >
-          <ion-icon name="settings"></ion-icon>
-        </button>
-      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
+
     <ion-list no-lines>
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name="{{p.icon}}"></ion-icon>  {{p.title}}
       </button>
     </ion-list>
+
+    <br>
+    <br>
+
+    <ion-list style="text-align: center">
+      <img width="80%" src="./assets/imgs/banners/4.png">
+      <img width="80%" src="./assets/imgs/banners/1.jpg">
+    </ion-list>
+
   </ion-content>
 
   </ion-menu>
 
   <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
-
-
-<!-- <ion-nav [root]="rootPage"></ion-nav> -->

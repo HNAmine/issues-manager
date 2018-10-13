@@ -16,6 +16,7 @@ import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { UserSignup } from "../pages/user-signup/user-signup";
 import { HttpModule } from "@angular/http";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { HttpModule } from "@angular/http";
     AddQuestions,
     ListQuestions
   ],
-  imports: [BrowserModule, HttpModule, IonicModule.forRoot(MyApp)],
+  imports: [BrowserModule, HttpModule,FormsModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,

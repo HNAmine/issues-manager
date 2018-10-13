@@ -16,8 +16,8 @@
 
     <ion-list-header (click)="topic.closed = !topic.closed">
 
-      <ion-icon *ngIf="topic.closed" name="md-remove" item-start></ion-icon>
-      <ion-icon *ngIf="!topic.closed" name="md-add" item-start></ion-icon>
+      <ion-icon *ngIf="!topic.closed" name="md-remove" item-start></ion-icon>
+      <ion-icon *ngIf="topic.closed" name="md-add" item-start></ion-icon>
 
       {{topic.value}}
     </ion-list-header>

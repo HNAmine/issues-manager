@@ -6,6 +6,7 @@ import {
   AlertController,
   ToastController
 } from "ionic-angular";
+import { Topic } from "../../model/topic.model";
 
 /**
  * Generated class for the Dashboard page.
@@ -20,8 +21,8 @@ import {
 export class AddQuestions {
   os: string;
 
-  topics: any[] = [];
-
+  topics: Topic[] = [];
+  request: any = {};
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,7 +30,7 @@ export class AddQuestions {
     public toastCtrl: ToastController,
     private questionService: QuestionService
   ) {
-    this.topics =this.questionService.getTopics();
+    this.topics = this.questionService.getTopics();
   }
 
   ionViewDidLoad() {

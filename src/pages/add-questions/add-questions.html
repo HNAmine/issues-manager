@@ -1,11 +1,3 @@
-<!-- <ion-header >
-  <ion-navbar  hideBackButton="true">
-    <ion-buttons end>
-     <button ion-button icon-right color="light" (click)="dashboardPage()">SKIP<ion-icon name="ios-arrow-forward"></ion-icon></button>
-   </ion-buttons>
-  </ion-navbar>
-</ion-header> -->
-
 <ion-header>
   <ion-navbar hideBackButton="true">
     <button ion-button menuToggle>
@@ -20,35 +12,46 @@
 <ion-content padding>
 
   <ion-list no-lines padding-top>
+    <form #questionForm="ngForm">
+      <ion-item>
+        <ion-label stacked>Firstname *</ion-label>
+        <ion-input [(ngModel)]="request.firstname" name="firstname" type="text" placeholder="Firstname" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Lastname</ion-label>
+        <ion-input [(ngModel)]="request.lastname" name="lastname" type="text" placeholder="Last Name"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Firstname</ion-label>
-      <ion-input type="text" placeholder="Firstname"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Lastname</ion-label>
-      <ion-input type="text" placeholder="Last Name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Question</ion-label>
-      <ion-textarea placeholder="Question"></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Email</ion-label>
-      <ion-input type="email" placeholder="Email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Profession</ion-label>
-      <ion-input type="text" placeholder="Profession"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Topic</ion-label>
-      <ion-select [(ngModel)]="os" submitText="Submit" cancelText="Cancel">
-        <ion-option *ngFor="let topic of topics" [value]="topic.id">{{topic.value}}</ion-option>
-      </ion-select>
-    </ion-item>
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input [(ngModel)]="request.email" name="email" type="email" placeholder="Email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Workplace</ion-label>
+        <ion-input [(ngModel)]="request.workplace" name="workplace"  type="text" placeholder="Workplace"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Profession</ion-label>
+        <ion-input [(ngModel)]="request.profession" name="profession" type="text" placeholder="Profession"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Topic *</ion-label>
+        <ion-select [(ngModel)]="request.topic" name="topic" [ngModelOptions]="{standalone: true}" submitText="Submit" cancelText="Cancel" required>
+          <ion-option *ngFor="let topic of topics" [value]="topic.id">{{topic.value}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Question *</ion-label>
+        <ion-textarea [(ngModel)]="request.question" name="question" placeholder="Question" required></ion-textarea>
+      </ion-item>
+
+
+      <button ion-button block round color="secondary" (click)="addQuestion()" [disabled]="!questionForm.form.valid">Submit</button>
+
+    </form>
   </ion-list>
 
-  <button ion-button block round color="secondary" (click)="addQuestion()">Ajouter</button>
 
 </ion-content>

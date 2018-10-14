@@ -4,7 +4,8 @@ import {
   NavController,
   NavParams,
   AlertController,
-  ToastController
+  ToastController,
+  LoadingController
 } from "ionic-angular";
 import { Topic } from "../../model/topic.model";
 
@@ -19,16 +20,21 @@ import { Topic } from "../../model/topic.model";
   templateUrl: "add-questions.html"
 })
 export class AddQuestions {
-  os: string;
 
   topics: Topic[] = [];
   request: any = {};
+
+  loader = this.loadingCtrl.create({
+    content: "Please wait..."
+  });
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    public loadingCtrl: LoadingController
   ) {
     this.topics = this.questionService.getTopics();
   }
@@ -67,5 +73,14 @@ export class AddQuestions {
       duration: 3000
     });
     toast.present();
+  }
+
+
+  presentLoading() {
+    this.loader.present();
+  }
+
+  dismissLoading() {
+    this.loader.dismiss();
   }
 }

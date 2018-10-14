@@ -24,11 +24,10 @@
 
 
     <ng-container *ngIf="!topic.closed">
-        <ion-item *ngFor="let question of topic.questions" style="background-color: transparent !important; border-bottom: none">
+        <ion-item *ngFor="let question of topic.questions" style="background-color: transparent !important; border-bottom: none" (click)="goToDetailPage(question.id)">
             <h2>{{question.content}}</h2>
             <h3>{{question.detail}}</h3>
-            <p style="color:black">{{question.content}}</p>
-          </ion-item>
+        </ion-item>
     </ng-container>
 
 

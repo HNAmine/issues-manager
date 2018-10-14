@@ -17,6 +17,7 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 import { UserSignup } from "../pages/user-signup/user-signup";
 import { HttpModule } from "@angular/http";
 import { FormsModule } from '@angular/forms';
+import { DetailQuestion } from '../pages/detail-question/detail-question';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     UserForgotpassword,
     Dashboard,
     AddQuestions,
-    ListQuestions
+    ListQuestions,
+    DetailQuestion
   ],
   imports: [BrowserModule, HttpModule,FormsModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
@@ -41,7 +43,8 @@ import { FormsModule } from '@angular/forms';
     UserForgotpassword,
     Dashboard,
     AddQuestions,
-    ListQuestions
+    ListQuestions,
+    DetailQuestion
   ],
   providers: [
     StatusBar,

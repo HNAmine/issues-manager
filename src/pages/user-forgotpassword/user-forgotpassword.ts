@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { Dashboard } from '../dashboard/dashboard';
 import { UserLogin } from '../user-login/user-login';
 import { UserSignup } from '../user-signup/user-signup';
 
-@IonicPage()
 @Component({
   selector: 'page-user-forgotpassword',
   templateUrl: 'user-forgotpassword.html',

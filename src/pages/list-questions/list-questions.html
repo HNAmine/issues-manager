@@ -16,21 +16,19 @@
 
     <ion-list-header (click)="topic.closed = !topic.closed">
 
-      <ion-icon *ngIf="topic.closed" name="md-remove" item-start></ion-icon>
-      <ion-icon *ngIf="!topic.closed" name="md-add" item-start></ion-icon>
+      <ion-icon *ngIf="!topic.closed" name="md-remove" item-start></ion-icon>
+      <ion-icon *ngIf="topic.closed" name="md-add" item-start></ion-icon>
 
       {{topic.value}}
     </ion-list-header>
 
+    <ng-container *ngIf="topic.closed">
 
-    <ng-container *ngIf="!topic.closed">
-        <ion-item *ngFor="let question of topic.questions" style="background-color: transparent !important; border-bottom: none">
+        <ion-card (click)="goToDetailPage(question)" *ngFor="let question of topic.questions">
             <h2>{{question.content}}</h2>
-            <h3>{{question.detail}}</h3>
-            <p style="color:black">{{question.content}}</p>
-          </ion-item>
-    </ng-container>
+        </ion-card>
 
+    </ng-container>
 
   </ion-list>
 

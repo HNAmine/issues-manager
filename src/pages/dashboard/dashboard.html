@@ -14,15 +14,22 @@
 
 <ion-content>
 
-  <ion-slides autoplay="2000" loop="true" speed="900">
-    <ion-slide>
-      <img src="./assets/imgs/banners/1.jpg">
-    </ion-slide>
-    <ion-slide>
-      <img src="./assets/imgs/banners/2.jpg">
-    </ion-slide>
-    <ion-slide>
-      <img src="./assets/imgs/banners/3.jpg">
+  <!-- Real floating action button, fixed. It will not scroll with the content -->
+  <ion-fab top right edge>
+    <button ion-fab mini color="light">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list>
+      <button ion-fab (click)="onNavigate('https://www.eoc-sa.com/terms/')">
+        <ion-icon name="md-log-in"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <!-- sliders -->
+  <ion-slides *ngIf="dash.slides && dash.slides.length > 0" autoplay="2000" loop="true" speed="900">
+    <ion-slide *ngFor="let slide of dash.slides">
+      <img [src]="slide">
     </ion-slide>
   </ion-slides>
 
@@ -42,54 +49,25 @@
 
   <div [ngSwitch]="segment">
 
+    <!-- program sections -->
     <ng-container *ngSwitchCase="'program'">
 
-      <ion-list>
+      <ion-list *ngFor="let program of dash.programs">
 
         <ion-list-header>
-          Scientific Program
+          {{program.title}}
         </ion-list-header>
 
-        <ion-item-sliding #slidingItem>
+
+        <ion-item-sliding *ngFor="let day of program.days" #slidingItem>
 
           <button ion-item>
-            Day 1 | Saturday 24 November 2018
+            {{day.title}}
           </button>
 
-          <ion-item-options side="right">
-            <button ion-button color="primary">
+          <ion-item-options side="right" *ngIf="day.pdf">
+            <button ion-button color="primary" (click)="onNavigate(day.pdf)">
               <ion-icon name="ios-cloud-upload"></ion-icon>
-            </button>
-          </ion-item-options>
-
-        </ion-item-sliding>
-
-
-        <ion-item-sliding>
-
-          <button ion-item>
-            Day 3 | Saturday 24 November 2018
-          </button>
-
-          <ion-item-options side="right">
-            <button ion-button color="primary">
-              <ion-icon name="ios-cloud-upload"></ion-icon>
-              Download
-            </button>
-          </ion-item-options>
-
-        </ion-item-sliding>
-
-        <ion-item-sliding>
-
-          <button ion-item>
-            Day 3 | Saturday 24 November 2018
-          </button>
-
-          <ion-item-options side="right">
-            <button ion-button color="primary">
-              <ion-icon name="ios-cloud-upload"></ion-icon>
-              Download
             </button>
           </ion-item-options>
 
@@ -97,27 +75,11 @@
 
       </ion-list>
 
-      <ion-list>
-        <ion-list-header>
-          Workshop and Wet Lab Program
-        </ion-list-header>
-        <button ion-item>
-          Day 1 | Saturday 24 November 2018
-        </button>
-
-        <button ion-item>
-          Day 2 | Sunday 25 November 2018
-        </button>
-
-        <button ion-item>
-          Day 3 | Monday 26 November 2018
-        </button>
-      </ion-list>
     </ng-container>
 
     <!-- speakers sections -->
     <ion-list *ngSwitchCase="'speakers'">
-      <ion-item *ngFor="let speaker of speakers">
+      <ion-item *ngFor="let speaker of dash.speakers">
         <ion-avatar item-start>
           <img [src]="speaker.avatarUri">
         </ion-avatar>
@@ -127,13 +89,12 @@
       </ion-item>
     </ion-list>
 
-    <ion-list *ngSwitchCase="'topics'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="./assets/imgs/banners/1.jpg">
-        </ion-thumbnail>
-        <h2>Daffy</h2>
-      </ion-item>
+    <!-- topics sections -->
+    <ion-list no-lines *ngSwitchCase="'topics'">
+      <button ion-item *ngFor="let topic of dash.topics">
+        {{ topic.value }}
+      </button>
     </ion-list>
+
   </div>
 </ion-content>

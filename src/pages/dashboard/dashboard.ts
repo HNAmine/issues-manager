@@ -1,7 +1,11 @@
-import { Program, ProgramItem } from "./../../model/program.model";
+import { SplashScreen } from "@ionic-native/splash-screen";
+
+import { Program } from "./../../model/program.model";
 import { Speaker } from "./../../model/speaker.model";
 import { Component } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams, LoadingController } from "ionic-angular";
+import { Topic } from "../../model/topic.model";
+import { QuestionService } from "../../providers/question.service";
 
 /**
  * Generated class for the Dashboard page.
@@ -14,47 +18,53 @@ import { NavController, NavParams } from "ionic-angular";
   templateUrl: "dashboard.html"
 })
 export class Dashboard {
+  dash: {
+    slides: string[];
+    speakers: Speaker[];
+    programs: Program[];
+    topics: Topic[];
+  } = { slides: [], programs: [], topics: [], speakers: [] };
   segment: string = "program";
-  speakers: Speaker[] = [];
-  programs: Program[] = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.speakers = [
-      new Speaker(
-        1,
-        "Dr. Ahmad Mustafa",
-        "Professor of Ophthalmology (Glaucoma)",
-        "Cairo University",
-        "https://www.eoc-sa.com/wp-content/uploads/2018/06/Dr.-Ahmed-Mostafa-Photo-350x350.jpeg"
-      ),
-      new Speaker(
-        2,
-        "Dr. Arif Khan",
-        "Pediatric Ophthalmology consultant",
-        "Cleveland Clinic Abu Dhabi",
-        "https://www.eoc-sa.com/wp-content/uploads/2018/06/arif-khan-photo-Copy-350x350.jpg"
-      ),
-      new Speaker(
-        3,
-        "Dr. Deepak Edward",
-        "Consultant OPHTHALMOLOGY (Glaucoma)",
-        "Chicago, Illinois",
-        "https://www.eoc-sa.com/wp-content/uploads/2018/07/Dr.-Deepak-P.-Edward-1-350x350.jpg"
-      )
-    ];
-    this.programs = [
-      new Program(1, "Scientific Program", [
-        new ProgramItem(1, "Day 1 | Saturday 17 November 2018"),
-        new ProgramItem(2, "Day 2 | Saturday 24 November 2018")
-      ]),
+  loader = this.loadingCtrl.create({
+    content: "Please wait..."
+  });
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    public questionService: QuestionService,
+    private splashScreen: SplashScreen
+  ) {
+    this.presentLoading();
+    this.questionService.getConfig().subscribe(
+      dash => {
+        this.dash.slides = dash.slides;
+        this.dash.speakers = dash.speakers;
+        this.dash.programs = dash.programs;
+        this.dash.topics = dash.topics;
 
-      new Program(1, "Workshop and Wet Lab Program", [
-        new ProgramItem(1, "Day 2 | Sunday 25 November 2018"),
-        new ProgramItem(1, "Day 2 | Sunday 25 November 2018")
-      ])
-    ];
+        this.dismissLoading();
+      },
+      err => {
+        this.dismissLoading();
+      }
+    );
   }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad Dashboard");
+    this.splashScreen.show();
+  }
+
+  onNavigate(url: string) {
+    window.open(url, "_blank");
+  }
+
+  presentLoading() {
+    this.loader.present();
+  }
+
+  dismissLoading() {
+    this.loader.dismiss();
   }
 }

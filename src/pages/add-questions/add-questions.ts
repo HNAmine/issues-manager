@@ -40,7 +40,7 @@ export class AddQuestions {
     this.questionService.getTopics().subscribe(topics => {
       this.topics = topics;
       this.dismissLoading();
-    },(err)=> {
+    }, (err) => {
       this.dismissLoading();
     });
   }
@@ -58,7 +58,7 @@ export class AddQuestions {
         {
           text: "Disagree",
           handler: () => {
-            this.confirmQuestionCreation();
+            this.request = {};
           }
         },
         {
@@ -74,13 +74,15 @@ export class AddQuestions {
   }
 
   confirmQuestionCreation() {
-    const toast = this.toastCtrl.create({
-      message: "User was added successfully",
-      duration: 3000
+    this.questionService.addQuestion(this.request).subscribe(succes => {
+      const toast = this.toastCtrl.create({
+        message: "Question was added successfully",
+        duration: 3000
+      });
+      toast.present();
+      this.request = {};
     });
-    toast.present();
   }
-
 
   presentLoading() {
     this.loader.present();

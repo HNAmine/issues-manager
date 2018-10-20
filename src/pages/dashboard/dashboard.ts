@@ -42,7 +42,10 @@ export class Dashboard {
         this.dash.speakers = dash.speakers;
         this.dash.programs = dash.programs;
         this.dash.topics = dash.topics;
-
+        this.questionService.sendCurrentIcons({
+          principal: dash.principal,
+          event: dash.event
+        });
         this.dismissLoading();
       },
       err => {

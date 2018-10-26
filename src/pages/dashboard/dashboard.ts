@@ -1,5 +1,3 @@
-import { SplashScreen } from "@ionic-native/splash-screen";
-
 import { Program } from "./../../model/program.model";
 import { Speaker } from "./../../model/speaker.model";
 import { Component } from "@angular/core";
@@ -32,8 +30,7 @@ export class Dashboard {
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    public questionService: QuestionService,
-    private splashScreen: SplashScreen
+    public questionService: QuestionService
   ) {
     this.presentLoading();
     this.questionService.getConfig().subscribe(
@@ -56,7 +53,6 @@ export class Dashboard {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad Dashboard");
-    this.splashScreen.show();
   }
 
   onNavigate(url: string) {

@@ -3,7 +3,6 @@ import { AddQuestions } from './../pages/add-questions/add-questions';
 
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
-// import { UserLogin } from '../pages/user-login/user-login';
 import { Dashboard } from '../pages/dashboard/dashboard';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';

@@ -51,9 +51,9 @@ export class AddQuestions {
 
   addQuestion() {
     const confirm = this.alertCtrl.create({
-      title: "êtes vous sûr ?",
+      title: "Are you sure ?",
       message:
-        "Do you agree to use this lightsaber to do good across the intergalactic galaxy?",
+        "To add a question?",
       buttons: [
         {
           text: "Disagree",

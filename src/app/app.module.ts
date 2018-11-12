@@ -1,3 +1,4 @@
+import { SpeakerPage } from './../pages/speaker/speaker';
 import { UserSignup } from './../pages/user-signup/user-signup';
 import { Home } from './../pages/home/home';
 import { ListQuestions } from './../pages/list-questions/list-questions';
@@ -26,7 +27,8 @@ import { DetailQuestion } from '../pages/detail-question/detail-question';
     AddQuestions,
     ListQuestions,
     DetailQuestion,
-    Home
+    Home,
+    SpeakerPage
   ],
   imports: [BrowserModule, HttpModule,FormsModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
@@ -38,7 +40,8 @@ import { DetailQuestion } from '../pages/detail-question/detail-question';
     AddQuestions,
     ListQuestions,
     DetailQuestion,
-    Home
+    Home,
+    SpeakerPage
   ],
   providers: [
     StatusBar,

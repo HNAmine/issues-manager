@@ -24,9 +24,11 @@
 
     <ng-container *ngIf="topic.closed">
 
-        <ion-card (click)="goToDetailPage(question)" *ngFor="let question of topic.questions">
-            <h2>{{question.content}}</h2>
-        </ion-card>
+      <ion-card (click)="goToDetailPage(question)" *ngFor="let question of topic.questions;let last = last" [ngClass]="{'space': last}">
+        <ion-card-content>
+          {{question.content}}
+        </ion-card-content>
+      </ion-card>
 
     </ng-container>
 

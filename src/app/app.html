@@ -1,4 +1,6 @@
 <!-- <ion-menu [content]="content" type="overlay"  persistent="true" >
+=======
+<ion-menu [content]="content" type="overlay" persistent="true">
 
   <ion-header>
     <ion-toolbar>
@@ -16,20 +18,23 @@
 
     <ion-list no-lines>
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon name="{{p.icon}}"></ion-icon>  {{p.title}}
+        <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}}
       </button>
     </ion-list>
 
     <br>
     <br>
 
-    <ion-list style="text-align: center">
-      <img width="80%" src="./assets/imgs/banners/4.png">
-      <img width="80%" src="./assets/imgs/banners/1.jpg">
+    <ion-list style="text-align: center" *ngIf="icons">
+      <img *ngIf="icons.principal" width="80%" [src]="icons.principal">
+      <img *ngIf="icons.event" width="80%" [src]="icons.event">
     </ion-list>
 
   </ion-content>
 
+<<<<<<< HEAD
   </ion-menu> -->
+=======
+<!-- </ion-menu> -->
 
-  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -4,10 +4,10 @@ import { AddQuestions } from './../pages/add-questions/add-questions';
 
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
-// import { UserLogin } from '../pages/user-login/user-login';
 import { Dashboard } from '../pages/dashboard/dashboard';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { QuestionService } from '../providers/question.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,21 +20,34 @@ export class MyApp {
   rootPage = UserLogin;
   pages: Array<{title: string,icon:string, component: any}>;
 
+
+  // rootPage = Dashboard;
+  // pages: Array<{ title: string, icon: string, component: any }>;
+  // icons: {
+  //   principal?: string,
+  //   event?: string
+  // } = {};
+
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    public questionService: QuestionService
   ) {
     this.initializeApp();
 
     // set our app's pages
     this.pages = [
-      { title: 'Dashbaord',icon:'home', component: Dashboard },
-      { title: 'Ask a question',icon:'md-help', component: AddQuestions },
-      { title: 'View all questions',icon:'list', component: ListQuestions },
-      { title: 'UserLogin',icon:'list', component: UserLogin },
+
+      { title: 'Dashbaord', icon: 'home', component: Dashboard },
+      { title: 'Ask a question', icon: 'md-help', component: AddQuestions },
+      { title: 'View all questions', icon: 'list', component: ListQuestions }
     ];
+
+    // this.questionService.getCurrentIcons().subscribe(icons => {
+    //   this.icons = icons;
+    // })
   }
 
   initializeApp() {

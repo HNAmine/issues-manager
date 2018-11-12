@@ -1,3 +1,4 @@
+import { Dashboard } from "./../dashboard/dashboard";
 import { Speaker } from "./../../model/speaker.model";
 import { Section } from "./../../model/section.model";
 import { QuestionService } from "./../../providers/question.service";
@@ -58,15 +59,14 @@ export class AddQuestions {
         ]
       )
     );
-    /*this.presentLoading();
-    this.questionService.getTopics().subscribe(
-      topics => {
-        this.dismissLoading();
-      },
-      err => {
-        this.dismissLoading();
-      }
-    );*/
+
+    // this.presentLoading();
+    // this.questionService.getTopics().subscribe(topics => {
+    //   this.topics = topics;
+    //   this.dismissLoading();
+    // }, (err) => {
+    //   this.dismissLoading();
+    // });
   }
 
   ionViewDidLoad() {
@@ -76,13 +76,13 @@ export class AddQuestions {
   addQuestion() {
     const confirm = this.alertCtrl.create({
       title: "Are you sure ?",
-      message:
-        "Are you sure , to post this question ?",
+      message: "Are you sure , to post this question ?",
+
       buttons: [
         {
           text: "Disagree",
           handler: () => {
-            // this.confirmQuestionCreation();
+            this.request = {};
           }
         },
         {
@@ -98,11 +98,19 @@ export class AddQuestions {
   }
 
   confirmQuestionCreation() {
-    const toast = this.toastCtrl.create({
-      message: "User was added successfully",
-      duration: 3000
-    });
-    toast.present();
+    // this.questionService.addQuestion(this.request).subscribe(succes => {
+    //   const toast = this.toastCtrl.create({
+    //     message: "Question was added successfully",
+    //     duration: 3000
+    //   });
+    //   toast.present();
+    //   this.request = {};
+    // });
+    this.request.submited = true;
+    setTimeout(() => {
+      this.navCtrl.push(Dashboard);
+      // this.navCtrl.
+    }, 3000);
   }
 
   presentLoading() {
@@ -115,7 +123,9 @@ export class AddQuestions {
 
   onSelectSection(section: Section) {
     this.request.sectionId = section.id;
-    this.speakers = section.speakers;
-    this.speakers.unshift(new Speaker(-1, "To All speackers", null, null, null));
+    this.speakers = section.speakers.slice(0);
+    this.speakers.unshift(
+      new Speaker(-1, "To All speackers", null, null, null)
+    );
   }
 }

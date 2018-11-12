@@ -7,10 +7,11 @@
 
 <ion-content padding>
   <ion-list no-lines padding-top>
-    <ng-container *ngIf="!request.sectionId">
+    <ng-container *ngIf="!request.sectionId && !request.submited">
       <h3 style="color: white !important;text-align: center">
         Select a session to ask in
       </h3>
+
 
       <ion-card
         *ngFor="let section of sections"
@@ -35,7 +36,7 @@
       </ion-card>
     </ng-container>
 
-    <ng-container *ngIf="request.sectionId">
+    <ng-container *ngIf="request.sectionId && !request.submited">
       <form #questionForm="ngForm">
         <ion-item>
           <ion-label>Select speacker to ask</ion-label>

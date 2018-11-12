@@ -1,3 +1,4 @@
+import { CommitteePage } from './../committee/committee';
 import { SpeakerPage } from './../speaker/speaker';
 import { ListQuestions } from "./../list-questions/list-questions";
 import { AddQuestions } from "./../add-questions/add-questions";
@@ -41,7 +42,7 @@ export class Home {
       { title: "Welcome message", icon: "ios-chatbubbles", component: ListQuestions },
       { title: "Program", icon: "list", component: ListQuestions },
       { title: "Speakers", icon: "ios-people", component: SpeakerPage },
-      { title: "Committees", icon: "md-people", component: ListQuestions },
+      { title: "Committees", icon: "md-people", component: CommitteePage },
       { title: "Contact us", icon: "call", component: ListQuestions }
     ];
   }

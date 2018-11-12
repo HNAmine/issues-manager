@@ -1,9 +1,7 @@
+import { Home } from './../home/home';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
-import { Dashboard } from '../dashboard/dashboard';
 import { UserSignup } from '../user-signup/user-signup';
-import { UserForgotpassword } from '../user-forgotpassword/user-forgotpassword';
 
 @Component({
   selector: 'page-user-login',
@@ -18,8 +16,7 @@ export class UserLogin {
     console.log('ionViewDidLoad UserLogin');
   }
 
-  dashboardPage(){ this.navCtrl.push(Dashboard); }
+  homePage(){ this.navCtrl.push(Home); }
   signupPage(){ this.navCtrl.push(UserSignup); }
-  forgotPasswordPage(){ this.navCtrl.push(UserForgotpassword); }
 
 }

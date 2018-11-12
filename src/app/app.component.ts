@@ -1,3 +1,4 @@
+import { UserLogin } from './../pages/user-login/user-login';
 import { ListQuestions } from './../pages/list-questions/list-questions';
 import { AddQuestions } from './../pages/add-questions/add-questions';
 
@@ -16,7 +17,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = Dashboard;
+  rootPage = UserLogin;
   pages: Array<{title: string,icon:string, component: any}>;
 
   constructor(
@@ -31,7 +32,8 @@ export class MyApp {
     this.pages = [
       { title: 'Dashbaord',icon:'home', component: Dashboard },
       { title: 'Ask a question',icon:'md-help', component: AddQuestions },
-      { title: 'View all questions',icon:'list', component: ListQuestions }
+      { title: 'View all questions',icon:'list', component: ListQuestions },
+      { title: 'UserLogin',icon:'list', component: UserLogin },
     ];
   }
 

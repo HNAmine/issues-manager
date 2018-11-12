@@ -1,15 +1,15 @@
 export class Speaker {
   id: number;
   completeName: string;
-  profession: string;
-  description: string;
-  avatarUri: string;
+  profession?: string;
+  description?: string;
+  avatarUri?: string;
   constructor(
     id: number,
     completeName: string,
-    profession: string,
-    description: string,
-    avatarUri: string
+    profession?: string,
+    description?: string,
+    avatarUri?: string
   ) {
     this.id = id;
     this.completeName = completeName;

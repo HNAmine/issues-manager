@@ -1,3 +1,5 @@
+import { Speaker } from "./../../model/speaker.model";
+import { Section } from "./../../model/section.model";
 import { QuestionService } from "./../../providers/question.service";
 import { Component } from "@angular/core";
 import {
@@ -7,7 +9,6 @@ import {
   ToastController,
   LoadingController
 } from "ionic-angular";
-import { Topic } from "../../model/topic.model";
 
 /**
  * Generated class for the Dashboard page.
@@ -20,8 +21,8 @@ import { Topic } from "../../model/topic.model";
   templateUrl: "add-questions.html"
 })
 export class AddQuestions {
-
-  topics: Topic[] = [];
+  sections: Section[] = [];
+  speakers: Speaker[] = [];
   request: any = {};
 
   loader = this.loadingCtrl.create({
@@ -36,13 +37,36 @@ export class AddQuestions {
     private questionService: QuestionService,
     public loadingCtrl: LoadingController
   ) {
-    this.presentLoading();
-    this.questionService.getTopics().subscribe(topics => {
-      this.topics = topics;
-      this.dismissLoading();
-    },(err)=> {
-      this.dismissLoading();
-    });
+    this.sections.push(
+      new Section(
+        1,
+        "Section Alpha",
+        "Saturday 24 Nov 08:00 – 9:00",
+        "XXXXXXXXXXX",
+        "AmineHN",
+        [{ id: 1, completeName: "Speacker 1" }]
+      ),
+      new Section(
+        1,
+        "Section Beta",
+        "Saturday 24 Nov 08:00 – 9:00",
+        "XXXXXXXXXXX",
+        "AmineHN",
+        [
+          { id: 1, completeName: "Speacker 1" },
+          { id: 2, completeName: "Speacker 2" }
+        ]
+      )
+    );
+    /*this.presentLoading();
+    this.questionService.getTopics().subscribe(
+      topics => {
+        this.dismissLoading();
+      },
+      err => {
+        this.dismissLoading();
+      }
+    );*/
   }
 
   ionViewDidLoad() {
@@ -51,14 +75,14 @@ export class AddQuestions {
 
   addQuestion() {
     const confirm = this.alertCtrl.create({
-      title: "êtes vous sûr ?",
+      title: "Are you sure ?",
       message:
-        "Do you agree to use this lightsaber to do good across the intergalactic galaxy?",
+        "Are you sure , to post this question ?",
       buttons: [
         {
           text: "Disagree",
           handler: () => {
-            this.confirmQuestionCreation();
+            // this.confirmQuestionCreation();
           }
         },
         {
@@ -81,12 +105,17 @@ export class AddQuestions {
     toast.present();
   }
 
-
   presentLoading() {
     this.loader.present();
   }
 
   dismissLoading() {
     this.loader.dismiss();
+  }
+
+  onSelectSection(section: Section) {
+    this.request.sectionId = section.id;
+    this.speakers = section.speakers;
+    this.speakers.unshift(new Speaker(-1, "To All speackers", null, null, null));
   }
 }

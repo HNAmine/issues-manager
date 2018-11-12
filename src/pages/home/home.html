@@ -1,0 +1,41 @@
+<!--
+  <ion-header>
+    <ion-navbar no-border-bottom hideBackButton="true">
+      <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+
+      <ion-title> Home</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content> <h1>Home</h1> </ion-content>
+-->
+
+<ion-menu [content]="content" type="overlay" persistent="true">
+  <ion-header>
+    <ion-toolbar>
+      <ion-item no-lines>
+        <ion-avatar item-left> <h2>G</h2> </ion-avatar>
+        <h2>Hello,</h2>
+        <p>Guest User</p>
+      </ion-item>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list no-lines>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}"></ion-icon> {{ p.title }}
+      </button>
+    </ion-list>
+
+    <br />
+    <br />
+
+    <ion-list style="text-align: center">
+      <img width="80%" src="./assets/imgs/banners/1.png" />
+      <img width="80%" src="./assets/imgs/banners/2.jpg" />
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

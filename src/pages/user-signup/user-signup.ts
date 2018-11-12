@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Dashboard } from '../dashboard/dashboard';
 import { UserLogin } from '../user-login/user-login';
-import { UserForgotpassword } from '../user-forgotpassword/user-forgotpassword';
 
 @Component({
   selector: 'page-user-signup',
@@ -20,6 +19,4 @@ export class UserSignup {
 
   dashboardPage(){ this.navCtrl.push(Dashboard); }
   loginPage(){ this.navCtrl.push(UserLogin);}
-  forgotPasswordPage(){ this.navCtrl.push(UserForgotpassword);}
-
 }

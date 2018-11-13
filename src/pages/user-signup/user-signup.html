@@ -13,39 +13,80 @@
 
 <ion-content padding>
   <img src="./assets/imgs/banners/2.jpg" class="center" />
-
-  <ion-list no-lines padding-top>
-    <ion-item>
-      <ion-input type="text" placeholder="Full name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" placeholder="Email address"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="password" placeholder="Password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="password" placeholder="Retype Password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" placeholder="Registration code"></ion-input>
-    </ion-item>
-  </ion-list>
-  <button ion-button block round color="secondary">Signup</button>
-
+  <form #questionForm="ngForm">
+    <ion-list no-lines padding-top>
+      <ion-item>
+        <ion-input
+          type="text"
+          placeholder="Full name"
+          [(ngModel)]="principal.fullName"
+          name="fullName"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="text"
+          placeholder="Email address"
+          [(ngModel)]="principal.email"
+          name="email"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="principal.password"
+          name="password"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="Retype Password"
+          [(ngModel)]="principal.repassword"
+          name="repassword"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="text"
+          placeholder="Registration code"
+          [(ngModel)]="principal.registrationCode"
+          name="registrationCode"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+    <button
+      ion-button
+      block
+      round
+      color="secondary"
+      [disabled]="
+        !questionForm.form.valid || principal.repassword !== principal.password
+      "
+    >
+      Signup
+    </button>
+  </form>
   <div padding-top>
     <button ion-button block color="light" clear (click)="loginPage()">
       Have account, Sign in from Here
     </button>
   </div>
 
-  <!-- <div padding>
-    <button ion-button block color="light" clear (click)="loginPage()">
-      Don't Have Registration code, <br />
-      Register for the event from Here
-    </button>
-  </div> -->
+  <!--
+    <div padding>
+      <button ion-button block color="light" clear (click)="loginPage()">
+        Don't Have Registration code, <br />
+        Register for the event from Here
+      </button>
+    </div>
+  -->
 
   <img src="./assets/imgs/banners/1.png" class="center" />
-
 </ion-content>

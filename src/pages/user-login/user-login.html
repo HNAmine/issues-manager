@@ -10,18 +10,31 @@
 <ion-content padding>
   <img src="./assets/imgs/banners/2.jpg" class="center" />
 
-  <ion-list no-lines padding-top>
-    <ion-item>
-      <ion-input type="text" placeholder="Email address"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="password" placeholder="Password"></ion-input>
-    </ion-item>
-  </ion-list>
-  <button ion-button block round color="secondary" (click)="homePage()">
-    Login
-  </button>
-
+  <form #questionForm="ngForm">
+    <ion-list no-lines padding-top>
+      <ion-item>
+        <ion-input
+          type="text"
+          placeholder="Email address"
+          [(ngModel)]="credential.email"
+          name="email"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="credential.password"
+          name="password"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button block round color="secondary" (click)="homePage()" [disabled]="!questionForm.form.valid">
+      Login
+    </button>
+  </form>
   <div padding-top>
     <button ion-button block color="light" clear (click)="signupPage()">
       Don't Have account, Sign up from Here
@@ -29,5 +42,4 @@
   </div>
 
   <img src="./assets/imgs/banners/1.png" class="center" />
-
 </ion-content>

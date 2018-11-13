@@ -10,6 +10,8 @@ import { UserLogin } from '../user-login/user-login';
 })
 export class UserSignup {
 
+  principal: any = {};
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

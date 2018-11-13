@@ -8,6 +8,9 @@ import { UserSignup } from "../user-signup/user-signup";
   templateUrl: "user-login.html"
 })
 export class UserLogin {
+
+  credential: any = {};
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {

@@ -1,21 +1,24 @@
 page-dashboard {
-    ion-slides{ max-height:23%;}
+  ion-slides {
+    max-height: 23%;
+  }
 }
 
-.bold{
+.bold {
   color: black !important;
 }
 
-
-.segment-activated{
+.segment-activated {
   color: white !important;
   border: 1px solid black !important;
   font-weight: bold !important;
 }
 
-.center {
+.center-check {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  position: fixed;
+  bottom: 0;
 }

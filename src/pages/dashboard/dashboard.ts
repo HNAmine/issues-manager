@@ -1,8 +1,6 @@
-import { Program } from "./../../model/program.model";
-import { Speaker } from "./../../model/speaker.model";
+import { AddQuestions } from "./../add-questions/add-questions";
 import { Component } from "@angular/core";
 import { NavController, NavParams, LoadingController } from "ionic-angular";
-import { Topic } from "../../model/topic.model";
 import { QuestionService } from "../../providers/question.service";
 
 /**
@@ -18,10 +16,26 @@ import { QuestionService } from "../../providers/question.service";
 export class Dashboard {
   dash: {
     slides: string[];
-    speakers: Speaker[];
-    programs: Program[];
-    topics: Topic[];
-  } = { slides: [], programs: [], topics: [], speakers: [] };
+    subject: { title?: string; descption?: string };
+    news?: { createdAt: Date; content: string }[];
+    principal?: string;
+    event?: string;
+  } = {
+    slides: [
+      "https://www.eoc-sa.com/wp-content/uploads/2018/10/NEW-MI-logo-2016-300x91.jpg",
+      "https://www.eoc-sa.com/wp-content/uploads/2018/08/WhatsApp-Image-2018-07-24-at-10.35.53-AM-300x96.jpeg"
+    ],
+    subject: {
+      title: "EOC2018",
+      descption: "EOC2018 : description and about (editable by admin) up"
+    },
+    news: [
+      { createdAt: new Date(), content: "news content 1" },
+      { createdAt: new Date(), content: "news content 1" },
+      { createdAt: new Date(), content: "news content 1" }
+    ]
+  };
+
   segment: string = "program";
   loader = this.loadingCtrl.create({
     content: "Please wait..."
@@ -32,23 +46,20 @@ export class Dashboard {
     public loadingCtrl: LoadingController,
     public questionService: QuestionService
   ) {
-    this.presentLoading();
-    this.questionService.getConfig().subscribe(
-      dash => {
-        this.dash.slides = dash.slides;
-        this.dash.speakers = dash.speakers;
-        this.dash.programs = dash.programs;
-        this.dash.topics = dash.topics;
-        this.questionService.sendCurrentIcons({
-          principal: dash.principal,
-          event: dash.event
-        });
-        this.dismissLoading();
-      },
-      err => {
-        this.dismissLoading();
-      }
-    );
+    // this.presentLoading();
+    // this.questionService.getConfig().subscribe(
+    //   dash => {
+    //     this.dash = dash;
+    //     this.questionService.sendCurrentIcons({
+    //       principal: dash.principal,
+    //       event: dash.event
+    //     });
+    //     this.dismissLoading();
+    //   },
+    //   err => {
+    //     this.dismissLoading();
+    //   }
+    // );
   }
 
   ionViewDidLoad() {
@@ -65,5 +76,9 @@ export class Dashboard {
 
   dismissLoading() {
     this.loader.dismiss();
+  }
+
+  askQuestion() {
+    this.navCtrl.push(AddQuestions);
   }
 }

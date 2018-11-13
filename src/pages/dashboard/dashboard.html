@@ -1,24 +1,17 @@
 <ion-header>
-
   <ion-navbar no-border-bottom hideBackButton="true">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
 
-    <ion-title>
-      Dashboard
-    </ion-title>
+    <ion-title> Dashboard </ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content>
-
-  <!-- Real floating action button, fixed. It will not scroll with the content -->
+  <!--
+    Real floating action button, fixed. It will not scroll with the content
+  -->
   <ion-fab top right edge>
-    <button ion-fab mini color="light">
-      <ion-icon name="add"></ion-icon>
-    </button>
+    <button ion-fab mini color="light"><ion-icon name="add"></ion-icon></button>
     <ion-fab-list>
       <button ion-fab (click)="onNavigate('https://www.eoc-sa.com/terms/')">
         <ion-icon name="md-log-in"></ion-icon>
@@ -27,77 +20,50 @@
   </ion-fab>
 
   <!-- sliders -->
-  <ion-slides *ngIf="dash.slides && dash.slides.length > 0" autoplay="2000" loop="true" speed="900">
+  <ion-slides
+    *ngIf="dash.slides && dash.slides.length > 0"
+    autoplay="2000"
+    loop="true"
+    speed="900"
+  >
     <ion-slide *ngFor="let slide of dash.slides">
-      <img [src]="slide">
+      <img [src]="slide" />
     </ion-slide>
   </ion-slides>
 
   <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="segment">
       <ion-segment-button value="program" class="bold">
-        Program
+        {{ dash.subject.title }}
       </ion-segment-button>
-      <ion-segment-button value="speakers" class="bold">
-        Speakers
+      <ion-segment-button (click)="askQuestion()" value="ask" class="bold">
+        Ask a question
       </ion-segment-button>
-      <ion-segment-button value="topics" class="bold">
-        Topics
+      <ion-segment-button *ngIf="dash.news && dash.news.length > 0" value="news" class="bold">
+        News
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 
   <div [ngSwitch]="segment">
-
     <!-- program sections -->
     <ng-container *ngSwitchCase="'program'">
-
-      <ion-list *ngFor="let program of dash.programs">
-
-        <ion-list-header>
-          {{program.title}}
-        </ion-list-header>
-
-
-        <ion-item-sliding *ngFor="let day of program.days" #slidingItem>
-
-          <button ion-item>
-            {{day.title}}
-          </button>
-
-          <ion-item-options side="right" *ngIf="day.pdf">
-            <button ion-button color="primary" (click)="onNavigate(day.pdf)">
-              <ion-icon name="ios-cloud-upload"></ion-icon>
-            </button>
-          </ion-item-options>
-
-        </ion-item-sliding>
-
-      </ion-list>
-
+      {{ dash.subject.descption }}
     </ng-container>
 
-    <!-- speakers sections -->
-    <ion-list *ngSwitchCase="'speakers'">
-      <ion-item *ngFor="let speaker of dash.speakers">
-        <ion-avatar item-start>
-          <img [src]="speaker.avatarUri">
-        </ion-avatar>
-        <h2>{{speaker.completeName}}</h2>
-        <h3>{{speaker.profession}}</h3>
-        <p>{{speaker.description}}</p>
-      </ion-item>
-    </ion-list>
+    <!-- news sections -->
+    <ng-container *ngIf="dash.news && dash.news.length > 0" no-lines>
+      <ng-container no-lines *ngSwitchCase="'news'">
+        <ion-list>
+            <ion-item *ngFor="let new of dash.news">
+              <h2>{{ new.createdAt | date }}</h2>
+              <h3>{{ new.content }}</h3>
+            </ion-item>
+          </ion-list>
 
-    <!-- topics sections -->
-    <ion-list no-lines *ngSwitchCase="'topics'">
-      <button ion-item *ngFor="let topic of dash.topics">
-        {{ topic.value }}
-      </button>
-    </ion-list>
-
+      </ng-container>
+    </ng-container>
   </div>
 
-  <img src="./assets/imgs/banners/1.png" class="center" />
-
+  <img src="./assets/imgs/banners/1.png" class="center-check" />
 </ion-content>

@@ -1,3 +1,7 @@
+import { SponsorPage } from './../sponsor/sponsor';
+import { ProgramPage } from './../program/program';
+import { ContactPage } from './../contact/contact';
+import { WelcomePage } from './../welcome/welcome';
 import { CommitteePage } from './../committee/committee';
 import { SpeakerPage } from './../speaker/speaker';
 import { ListQuestions } from "./../list-questions/list-questions";
@@ -39,11 +43,12 @@ export class Home {
     this.pages = [
       { title: "Dashbaord", icon: "home", component: Dashboard },
       { title: "Ask a question", icon: "md-help", component: AddQuestions },
-      { title: "Welcome message", icon: "ios-chatbubbles", component: ListQuestions },
-      { title: "Program", icon: "list", component: ListQuestions },
+      { title: "Welcome message", icon: "ios-chatbubbles", component: WelcomePage },
+      { title: "Program", icon: "list", component: ProgramPage },
       { title: "Speakers", icon: "ios-people", component: SpeakerPage },
       { title: "Committees", icon: "md-people", component: CommitteePage },
-      { title: "Contact us", icon: "call", component: ListQuestions }
+      { title: "Sponsors", icon: "md-people", component: SponsorPage },
+      { title: "Contact us", icon: "call", component: ContactPage }
     ];
   }
 

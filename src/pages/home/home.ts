@@ -1,9 +1,9 @@
-import { SponsorPage } from './../sponsor/sponsor';
-import { ProgramPage } from './../program/program';
-import { ContactPage } from './../contact/contact';
-import { WelcomePage } from './../welcome/welcome';
-import { CommitteePage } from './../committee/committee';
-import { SpeakerPage } from './../speaker/speaker';
+import { SponsorPage } from "./../sponsor/sponsor";
+import { ProgramPage } from "./../program/program";
+import { ContactPage } from "./../contact/contact";
+import { WelcomePage } from "./../welcome/welcome";
+import { CommitteePage } from "./../committee/committee";
+import { SpeakerPage } from "./../speaker/speaker";
 import { ListQuestions } from "./../list-questions/list-questions";
 import { AddQuestions } from "./../add-questions/add-questions";
 
@@ -13,6 +13,7 @@ import { Platform, MenuController, Nav } from "ionic-angular";
 import { Dashboard } from "../dashboard/dashboard";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
+import { QuestionService } from "../../providers/question.service";
 
 /**
  * Generated class for the Dashboard page.
@@ -30,12 +31,16 @@ export class Home {
   // make HelloIonicPage the root (or first) page
   rootPage = Dashboard;
   pages: Array<{ title: string; icon: string; component: any }>;
-
+  icons: {
+    principal?: string;
+    event?: string;
+  } = {};
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    public questionService: QuestionService
   ) {
     this.initializeApp();
 
@@ -43,13 +48,21 @@ export class Home {
     this.pages = [
       { title: "Dashbaord", icon: "home", component: Dashboard },
       { title: "Ask a question", icon: "md-help", component: AddQuestions },
-      { title: "Welcome message", icon: "ios-chatbubbles", component: WelcomePage },
+      {
+        title: "Welcome message",
+        icon: "ios-chatbubbles",
+        component: WelcomePage
+      },
       { title: "Program", icon: "list", component: ProgramPage },
       { title: "Speakers", icon: "ios-people", component: SpeakerPage },
       { title: "Committees", icon: "md-people", component: CommitteePage },
       { title: "Sponsors", icon: "md-people", component: SponsorPage },
       { title: "Contact us", icon: "call", component: ContactPage }
     ];
+
+    this.questionService.getCurrentIcons().subscribe(icons => {
+      this.icons = icons;
+    });
   }
 
   initializeApp() {

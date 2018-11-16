@@ -20,14 +20,6 @@ export class MyApp {
   rootPage = UserLogin;
   pages: Array<{title: string,icon:string, component: any}>;
 
-
-  // rootPage = Dashboard;
-  // pages: Array<{ title: string, icon: string, component: any }>;
-  // icons: {
-  //   principal?: string,
-  //   event?: string
-  // } = {};
-
   constructor(
     public platform: Platform,
     public menu: MenuController,
@@ -45,9 +37,6 @@ export class MyApp {
       { title: 'View all questions', icon: 'list', component: ListQuestions }
     ];
 
-    // this.questionService.getCurrentIcons().subscribe(icons => {
-    //   this.icons = icons;
-    // })
   }
 
   initializeApp() {

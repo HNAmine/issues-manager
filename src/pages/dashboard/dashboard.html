@@ -7,6 +7,9 @@
 </ion-header>
 
 <ion-content>
+
+    {{dash.news | json}}
+
   <!--
     Real floating action button, fixed. It will not scroll with the content
   -->
@@ -56,7 +59,7 @@
       <ng-container no-lines *ngSwitchCase="'news'">
         <ion-list>
             <ion-item *ngFor="let new of dash.news">
-              <h2>{{ new.createdAt | date }}</h2>
+              <h2>{{ new.createdAt }}</h2>
               <h3>{{ new.content }}</h3>
             </ion-item>
           </ion-list>

@@ -20,19 +20,44 @@ export class QuestionService {
     return this.currentIcons$.asObservable();
   }
 
-  getTopics() {
+  login(credential) {
     let headers = new Headers({ Accept: "application/json" });
     return this._http
-      .get(this.uri + "/listQuestions.php", {
+      .post(this.uri + "login/user", credential ,{
         headers: headers
-      })
-      .map(res => res.json());
+      });
+  }
+
+  register(principal) {
+    let headers = new Headers({ Accept: "application/json" });
+    return this._http
+      .post(this.uri + "login/registration", principal ,{
+        headers: headers
+      });
   }
 
   getConfig() {
     let headers = new Headers({ Accept: "application/json" });
     return this._http
-      .get(this.uri + "/dashbord.php", {
+      .get(this.uri + "dashboard/getDashboard", {
+        headers: headers
+      })
+      .map(res => res.json());
+  }
+
+  getPrograms() {
+    let headers = new Headers({ Accept: "application/json" });
+    return this._http
+      .get(this.uri + "programme/getprogramme", {
+        headers: headers
+      })
+      .map(res => res.json());
+  }
+
+  getTopics() {
+    let headers = new Headers({ Accept: "application/json" });
+    return this._http
+      .get(this.uri + "/listQuestions.php", {
         headers: headers
       })
       .map(res => res.json());

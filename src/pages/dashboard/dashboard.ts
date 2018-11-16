@@ -17,23 +17,14 @@ export class Dashboard {
   dash: {
     slides: string[];
     subject: { title?: string; descption?: string };
-    news?: { createdAt: Date; content: string }[];
+    news?: { createdAt: string, content: string }[];
     principal?: string;
     event?: string;
   } = {
-    slides: [
-      "https://www.eoc-sa.com/wp-content/uploads/2018/10/NEW-MI-logo-2016-300x91.jpg",
-      "https://www.eoc-sa.com/wp-content/uploads/2018/08/WhatsApp-Image-2018-07-24-at-10.35.53-AM-300x96.jpeg"
-    ],
+    slides: [],
     subject: {
-      title: "EOC2018",
-      descption: "EOC2018 : description and about (editable by admin) up"
     },
-    news: [
-      { createdAt: new Date(), content: "news content 1" },
-      { createdAt: new Date(), content: "news content 1" },
-      { createdAt: new Date(), content: "news content 1" }
-    ]
+    news: []
   };
 
   segment: string = "program";
@@ -46,20 +37,20 @@ export class Dashboard {
     public loadingCtrl: LoadingController,
     public questionService: QuestionService
   ) {
-    // this.presentLoading();
-    // this.questionService.getConfig().subscribe(
-    //   dash => {
-    //     this.dash = dash;
-    //     this.questionService.sendCurrentIcons({
-    //       principal: dash.principal,
-    //       event: dash.event
-    //     });
-    //     this.dismissLoading();
-    //   },
-    //   err => {
-    //     this.dismissLoading();
-    //   }
-    // );
+    this.presentLoading();
+    this.questionService.getConfig().subscribe(
+      dash => {
+        this.dash = dash;
+        this.questionService.sendCurrentIcons({
+          principal: dash.principal,
+          event: dash.event
+        });
+        this.dismissLoading();
+      },
+      err => {
+        this.dismissLoading();
+      }
+    );
   }
 
   ionViewDidLoad() {

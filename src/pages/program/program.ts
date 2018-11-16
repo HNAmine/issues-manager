@@ -1,6 +1,7 @@
+import { QuestionService } from './../../providers/question.service';
 import { Program, ProgramItem } from "./../../model/program.model";
 import { Component } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams, LoadingController } from "ionic-angular";
 import { ThrowStmt } from "@angular/compiler";
 
 @Component({
@@ -12,20 +13,29 @@ export class ProgramPage {
 
   currentProgram: Program = null;
   currentDayIndex: number = null;
+  loader = this.loadingCtrl.create({
+    content: "Please wait..."
+  });
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public loadingCtrl: LoadingController,public questionService: QuestionService) {
+      this.presentLoading();
+      this.questionService.getPrograms().subscribe(
+        programs => {
+          this.programs = programs;
+          this.dismissLoading();
+        },
+        err => {
+          this.dismissLoading();
+        }
+      );
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.programs.push(
-      new Program(1, "Program 1", [
-        new ProgramItem(1, "Day +1 (Program 1)", "pdf uri 1"),
-        new ProgramItem(1, "Day +2 (Program 1)", "pdf uri 2"),
-        new ProgramItem(1, "Day +3 (Program 1)", "pdf uri 3")
-      ]),
-      new Program(2, "Program 2", [
-        new ProgramItem(1, "Day +1 (Program 2)", "pdf uri 1"),
-        new ProgramItem(1, "Day +2 (Program 2)", "pdf uri 2"),
-        new ProgramItem(1, "Day +3 (Program 2)", "pdf uri 3")
-      ])
-    );
+  presentLoading() {
+    this.loader.present();
+  }
+
+  dismissLoading() {
+    this.loader.dismiss();
   }
 
   onSelect(program: Program) {

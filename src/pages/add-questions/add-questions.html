@@ -7,8 +7,6 @@
 
 <ion-content padding>
 
-    {{request | json}}
-
   <ion-list no-lines padding-top>
     <ng-container *ngIf="!request.sectionId && !request.submited">
       <h3 style="color: white !important;text-align: center">
@@ -24,12 +22,12 @@
           <b>{{ section.title }}</b>
         </ion-card-header>
         <ion-card-content>
-          <h4>{{ section.programmedOn }}</h4>
+          <h4>{{ section.Date }} {{ section.heure }}</h4>
           <h4><b>Subject :</b> {{ section.subject }}</h4>
           <h4><b>Moderator :</b> {{ section.moderator }}</h4>
           <ion-grid>
             <ion-row>
-              <ion-col col-6 *ngFor="let speacker of section.speakers">
+              <ion-col col-6 *ngFor="let speacker of section.speackers">
                 {{ speacker.completeName }}</ion-col
               >
             </ion-row>

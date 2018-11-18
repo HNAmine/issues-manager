@@ -12,7 +12,11 @@
   <ion-content>
     <ion-list no-lines>
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon name="{{p.icon}}"></ion-icon> {{ p.title }}
+        <ion-icon name="{{p?.icon}}"></ion-icon> {{ p.title }}
+      </button>
+
+      <button ion-item (click)="logout()">
+        <ion-icon name="md-log-out"></ion-icon> Logout
       </button>
     </ion-list>
 

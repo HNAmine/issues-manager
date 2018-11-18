@@ -37,8 +37,8 @@ export class UserSignup {
           message: "Account was added successfully",
           duration: 3000
         });
-        toast.present();
         this.principal = {};
+        toast.present();
       },
       err => {
         if (err.status == 300) {

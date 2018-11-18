@@ -38,35 +38,13 @@ export class AddQuestions {
     private questionService: QuestionService,
     public loadingCtrl: LoadingController
   ) {
-    this.sections.push(
-      new Section(
-        1,
-        "Section Alpha",
-        "Saturday 24 Nov 08:00 – 9:00",
-        "XXXXXXXXXXX",
-        "AmineHN",
-        [{ id: 1, completeName: "Speacker 1" }]
-      ),
-      new Section(
-        1,
-        "Section Beta",
-        "Saturday 24 Nov 08:00 – 9:00",
-        "XXXXXXXXXXX",
-        "AmineHN",
-        [
-          { id: 1, completeName: "Speacker 1" },
-          { id: 2, completeName: "Speacker 2" }
-        ]
-      )
-    );
-
-    // this.presentLoading();
-    // this.questionService.getTopics().subscribe(topics => {
-    //   this.topics = topics;
-    //   this.dismissLoading();
-    // }, (err) => {
-    //   this.dismissLoading();
-    // });
+    this.presentLoading();
+    this.questionService.getSections().subscribe(sections => {
+      this.sections = sections;
+      this.dismissLoading();
+    }, (err) => {
+      this.dismissLoading();
+    });
   }
 
   ionViewDidLoad() {
@@ -98,19 +76,13 @@ export class AddQuestions {
   }
 
   confirmQuestionCreation() {
-    // this.questionService.addQuestion(this.request).subscribe(succes => {
-    //   const toast = this.toastCtrl.create({
-    //     message: "Question was added successfully",
-    //     duration: 3000
-    //   });
-    //   toast.present();
-    //   this.request = {};
-    // });
-    this.request.submited = true;
-    setTimeout(() => {
-      this.navCtrl.push(Dashboard);
-      // this.navCtrl.
-    }, 3000);
+    this.questionService.addQuestion(this.request).subscribe(succes => {
+      this.request.submited = true;
+      setTimeout(() => {
+        this.navCtrl.push(Dashboard);
+      }, 3000);
+    });
+
   }
 
   presentLoading() {
@@ -123,7 +95,7 @@ export class AddQuestions {
 
   onSelectSection(section: Section) {
     this.request.sectionId = section.id;
-    this.speakers = section.speakers.slice(0);
+    this.speakers = section.speackers.slice(0);
     this.speakers.unshift(
       new Speaker(-1, "To All speackers", null, null, null)
     );

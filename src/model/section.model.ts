@@ -3,9 +3,11 @@ export class Section {
   id: number;
   title: string;
   programmedOn: string;
+  Date:string;
+  heure:string;
   subject: string;
   moderator: string;
-  speakers: Speaker[];
+  speackers: Speaker[];
   constructor(
     id: number,
     title: string,
@@ -19,6 +21,6 @@ export class Section {
     this.programmedOn = programmedOn;
     this.subject = subject;
     this.moderator = moderator;
-    this.speakers = speakers;
+    this.speackers = speakers;
   }
 }

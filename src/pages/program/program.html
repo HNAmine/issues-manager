@@ -9,8 +9,6 @@
 
 <ion-content padding>
 
-  {{programs | json}}
-
   <ng-container *ngIf="!currentProgram">
     <h3
       (click)="onSelect(program)"

@@ -1,6 +1,7 @@
 import { Speaker } from "./../../model/speaker.model";
 import { Component } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams, LoadingController } from "ionic-angular";
+import { QuestionService } from "../../providers/question.service";
 
 @Component({
   selector: "speaker",
@@ -8,34 +9,31 @@ import { NavController, NavParams } from "ionic-angular";
 })
 export class SpeakerPage {
   speakers: Speaker[] = [];
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.speakers.push(
-      new Speaker(
-        1,
-        "Amine HN",
-        "IEDC",
-        "best developer ever !",
-        "https://www.eoc-sa.com/wp-content/uploads/2018/06/Dr.-Ahmed-Mostafa-Photo-350x350.jpeg"
-      ),
-      new Speaker(
-        1,
-        "Amine HN",
-        "IEDC",
-        "best developer ever !",
-        "https://www.eoc-sa.com/wp-content/uploads/2018/06/Dr.-Ahmed-Mostafa-Photo-350x350.jpeg"
-      ),
-      new Speaker(
-        1,
-        "Amine HN",
-        "IEDC",
-        "best developer ever !",
-        "https://www.eoc-sa.com/wp-content/uploads/2018/06/Dr.-Ahmed-Mostafa-Photo-350x350.jpeg"
-      )
+  loader = this.loadingCtrl.create({
+    content: "Please wait..."
+  });
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public questionService: QuestionService) {
+    this.presentLoading();
+    this.questionService.getSpeackers().subscribe(
+      speakers => {
+        this.speakers = speakers;
+        this.dismissLoading();
+      },
+      err => {
+        this.dismissLoading();
+      }
     );
   }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad speaker");
+  }
+
+  presentLoading() {
+    this.loader.present();
+  }
+
+  dismissLoading() {
+    this.loader.dismiss();
   }
 }

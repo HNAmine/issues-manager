@@ -33,10 +33,6 @@ export class UserLogin {
   }
 
   signin() {
-
-    this.homePage();
-
-/*
     this.presentLoading();
     this.questionService.login(this.credential).subscribe(
       res => {
@@ -45,6 +41,7 @@ export class UserLogin {
           duration: 3000
         });
         toast.present();
+        this.questionService.email = this.credential.email;
         this.homePage();
         this.dismissLoading();
       },
@@ -59,7 +56,7 @@ export class UserLogin {
 
         this.dismissLoading();
       }
-    );*/
+    );
   }
 
 

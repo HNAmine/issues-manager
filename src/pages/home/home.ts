@@ -8,12 +8,13 @@ import { ListQuestions } from "./../list-questions/list-questions";
 import { AddQuestions } from "./../add-questions/add-questions";
 
 import { Component, ViewChild } from "@angular/core";
-import { Platform, MenuController, Nav } from "ionic-angular";
+import { Platform, MenuController, Nav, NavController } from "ionic-angular";
 // import { UserLogin } from '../pages/user-login/user-login';
 import { Dashboard } from "../dashboard/dashboard";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { QuestionService } from "../../providers/question.service";
+import { UserLogin } from "../user-login/user-login";
 
 /**
  * Generated class for the Dashboard page.
@@ -40,7 +41,8 @@ export class Home {
     public menu: MenuController,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public questionService: QuestionService
+    public questionService: QuestionService,
+    public navCtrl: NavController
   ) {
     this.initializeApp();
 
@@ -79,5 +81,10 @@ export class Home {
     this.menu.close();
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
+  }
+
+  logout(){
+    this.questionService.email = null;
+    this.navCtrl.push(UserLogin);
   }
 }

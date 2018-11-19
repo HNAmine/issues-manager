@@ -55,8 +55,8 @@
     <ng-container *ngSwitchCase="'news'">
         <ion-list>
             <span *ngFor="let new of dash.news">
-              <h4>{{ new.createdAt }}</h4>
-              <h6>{{ new.content }}</h6>
+              <h4 style="padding-left: 10px">{{ new.createdAt }}</h4>
+              <div style="padding: 10px">{{ new.content }}</div>
               <hr style="background-color: black">
             </span>
           </ion-list>

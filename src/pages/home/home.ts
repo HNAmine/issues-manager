@@ -1,10 +1,10 @@
+import { UserLogin } from './../user-login/user-login';
 import { SponsorPage } from "./../sponsor/sponsor";
 import { ProgramPage } from "./../program/program";
 import { ContactPage } from "./../contact/contact";
 import { WelcomePage } from "./../welcome/welcome";
 import { CommitteePage } from "./../committee/committee";
 import { SpeakerPage } from "./../speaker/speaker";
-import { ListQuestions } from "./../list-questions/list-questions";
 import { AddQuestions } from "./../add-questions/add-questions";
 
 import { Component, ViewChild } from "@angular/core";
@@ -14,7 +14,6 @@ import { Dashboard } from "../dashboard/dashboard";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { QuestionService } from "../../providers/question.service";
-import { UserLogin } from "../user-login/user-login";
 
 /**
  * Generated class for the Dashboard page.
@@ -85,6 +84,6 @@ export class Home {
 
   logout(){
     this.questionService.email = null;
-    this.navCtrl.push(UserLogin);
+    this.navCtrl.setRoot(UserLogin);
   }
 }

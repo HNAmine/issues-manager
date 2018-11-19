@@ -81,8 +81,8 @@ export class AddQuestions {
       setTimeout(() => {
         this.navCtrl.push(Dashboard);
       }, 3000);
+    }, (err)=> {
     });
-
   }
 
   presentLoading() {

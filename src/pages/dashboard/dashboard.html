@@ -36,10 +36,10 @@
       <ion-segment-button value="program" class="bold">
         {{ dash.subject.title }}
       </ion-segment-button>
-      <ion-segment-button (click)="askQuestion()" value="ask" class="bold">
+      <ion-segment-button (click)="askQuestion()" class="bold">
         Ask a question
       </ion-segment-button>
-      <ion-segment-button *ngIf="dash.news && dash.news.length > 0" value="news" class="bold">
+      <ion-segment-button value="news" class="bold">
         News
       </ion-segment-button>
     </ion-segment>
@@ -48,22 +48,23 @@
   <div [ngSwitch]="segment">
     <!-- program sections -->
     <ng-container *ngSwitchCase="'program'">
-      {{ dash.subject.descption }}
+      <div style="padding: 10px">{{ dash.subject.descption }}</div>
     </ng-container>
 
     <!-- news sections -->
-    <ng-container *ngIf="dash.news && dash.news.length > 0" no-lines>
-      <ng-container no-lines *ngSwitchCase="'news'">
+    <ng-container *ngSwitchCase="'news'">
         <ion-list>
-            <ion-item *ngFor="let new of dash.news">
-              <h2>{{ new.createdAt }}</h2>
-              <h3>{{ new.content }}</h3>
-            </ion-item>
+            <span *ngFor="let new of dash.news">
+              <h4>{{ new.createdAt }}</h4>
+              <h6>{{ new.content }}</h6>
+              <hr style="background-color: black">
+            </span>
           </ion-list>
-
-      </ng-container>
     </ng-container>
   </div>
 
-  <img src="./assets/imgs/banners/1.png" class="center-check" />
+  <div class="image_block">
+    <a><img src="./assets/imgs/banners/1.png" class="center-check" /></a>
+</div>
+
 </ion-content>
